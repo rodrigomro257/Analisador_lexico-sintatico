@@ -1,2 +1,2 @@
 # Analisador_lexico-sintatico
-Implementação de um analisador sintático para a linguagem "Javazim".
+Implementação de um analisador léxico e sintático para a linguagem "Javazim".
