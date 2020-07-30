@@ -1,0 +1,7 @@
+public class id {
+    public static void main ( ) {
+        int id_1;
+        if (  5  )
+            if (  5  ) id_1 =  7  ;
+    }
+}

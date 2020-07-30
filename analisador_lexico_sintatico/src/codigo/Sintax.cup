@@ -1,0 +1,72 @@
+package codigo;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal
+    Public, Static, Void, Main, Class, New,
+    If, Else, While, Print, Println, PontoVirgula, Virgula,
+    Igual, Soma, Subtracao, Multiplicacao, Divisao,
+    AbreParentese, FechaParentese, AbreCochete, FechaCochete, AbreChave, FechaChave,
+    Op, OpUnario, TipoPrimitivo, Digito,
+    ConstInteira, ConstReal, ConstString, True, False,
+    ID, Retorno, 
+    DeclaracaoVar, 
+    E, ERROR
+;
+
+non terminal
+    PROGRAMA, CLASSE, DECLARACAOVAR, LISTAMETODO, METODO, LISTAPARAM, PARAM, 
+    RETORNO, MAIN, SENTENCA, TIPO, LISTACMD, CMD, CMDIF, CMDWHILE, 
+    CMDPRINT, CMDPRINTLN, CMDATRIB, CMDFUNC, EXPRESSAO
+;
+
+start with PROGRAMA;
+
+PROGRAMA::= CLASSE;
+CLASSE::= Public E Class E ID E AbreChave E METODO E MAIN E FechaChave |
+          Public E Class E ID E AbreChave E MAIN E FechaChave;
+DECLARACAOVAR::= TIPO E ID PontoVirgula;
+LISTAMETODO::= METODO;
+METODO::= TIPO E ID E AbreParentese E LISTAPARAM E FechaParentese E AbreChave E DECLARACAOVAR E CMD E FechaChave;
+LISTAPARAM::= PARAM;
+PARAM::= TIPO E ID;
+RETORNO::= Retorno E ID E PontoVirgula;
+
+MAIN::= Public E Static E Void E Main E AbreParentese E FechaParentese E AbreChave E FechaChave |
+        Public E Static E Void E Main E AbreParentese E FechaParentese E AbreChave E DECLARACAOVAR E CMD E FechaChave;
+SENTENCA::= DECLARACAOVAR E LISTACMD; // descobrir porque está bugando aqui.
+TIPO::= TipoPrimitivo AbreCochete E FechaCochete | TipoPrimitivo; // NÃO FUNCIOU E AQUI.
+CMD::= CMDIF | CMDWHILE | CMDPRINT | CMDPRINTLN | CMDATRIB | CMDFUNC;
+CMDIF::= If E AbreParentese E EXPRESSAO E FechaParentese E CMD |
+         If AbreParentese E EXPRESSAO E FechaParentese E CMD E Else E CMD;
+CMDWHILE::= While E AbreParentese E EXPRESSAO E FechaParentese ;
+CMDPRINT::= Print E AbreParentese E EXPRESSAO E FechaParentese E PontoVirgula;
+CMDPRINTLN::= Println E AbreParentese E EXPRESSAO E FechaParentese E PontoVirgula;
+CMDATRIB::= ID E Igual E EXPRESSAO E PontoVirgula | 
+            ID E AbreCochete E EXPRESSAO E FechaCochete E Igual E EXPRESSAO;
+CMDFUNC::= ID E AbreParentese E EXPRESSAO E FechaParentese;
+EXPRESSAO::= Digito E Op E Digito |
+             ID E |
+             ID E AbreCochete E FechaCochete |
+             ID E AbreParentese E EXPRESSAO E FechaParentese |
+             ConstInteira |
+             ConstReal |
+             ConstString |
+             True |
+             False |
+             New E TipoPrimitivo E AbreCochete E EXPRESSAO E FechaCochete |
+             OpUnario E EXPRESSAO |
+             AbreParentese E EXPRESSAO E FechaParentese;

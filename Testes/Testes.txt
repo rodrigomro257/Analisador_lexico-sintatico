@@ -1,0 +1,74 @@
+TESTES.
+
+TESTE 1.
+
+public class id {
+    public static void main ( ) {
+        int id_1;
+        if (  5  )
+            if (  5  ) id_1 =  7  ;
+    }
+}
+
+TESTE 2.
+
+public class id {
+    public static void main ( ) {
+        int id_1;
+        convert_toString (  1  )
+    }
+}
+
+TESTE 3.
+
+public class id {
+    int convert_toString ( int convert ) {
+        String convertido;
+        toString (  7  )
+    }
+
+    public static void main ( ) {
+        int id_1;
+        convert_toString (  1  )
+    }
+}
+
+
+
+
+
+
+
+
+TESTE 4.
+
+public class id {
+    public static void main ( ) {
+        int id_1;
+        if (  5  )
+            if (  5  ) id_1 =  7
+    }
+}
+
+TESTE 5.
+
+public classe id {
+    public static void main ( ) {
+        int id_1;
+        convert_toString (  1  )
+    }
+}
+
+TESTE 6.
+
+Public class id {
+    int convert_toString ( int convert ) {
+        String convertido;
+        toString (  7  )
+    }
+
+    public static void main ( ) {
+        int id_1;
+        convert_toString (  1  )
+    }
+}
